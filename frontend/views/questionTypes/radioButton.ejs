@@ -1,0 +1,9 @@
+<% question.options.forEach( option => { %>
+<label for="<%= question._id +'_'+ option.value %>"><%= option.label %></label>
+<input
+    id="<%= question._id +'_'+ option.value %>"
+    type="radio"
+    name="<%= question._id %>"
+/>
+
+<% }) %>

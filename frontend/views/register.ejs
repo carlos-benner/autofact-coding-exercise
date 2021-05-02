@@ -1,0 +1,17 @@
+<form action="/register" method="POST">
+    <label for="userName">Email: </label>
+    <input id="userName" type="email" name="userName" />
+    <label for="password">Password: </label>
+    <input id="password" type="password" name="password" />
+    <label for="userRole">Role: </label>
+
+    <input id="userRole_admin" name="userRole" value="admin" type="radio" />
+    <label for="userRole_admin">Admin</label>
+    <input id="userRole_user" name="userRole" value="user" type="radio" />
+    <label for="userRole_user">User</label>
+    <button type="submit">Submit</button>
+</form>
+
+<a href="/login">Login</a>
+
+<p><%= msg %></p>

@@ -1,0 +1,40 @@
+#use $DB_USER=[DB_USER] $DB_PASSWORD=[DB_PASSWORD] $DB_NAME=[DB_NAME] $APP_PORT=[APP_PORT]  docker-compose up
+version: '3.9'
+
+services:
+    mongodb:
+        container_name: mongodb
+        image: mongo
+        restart: always
+        volumes:
+            - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=${DB_ROOT_USER}
+            - MONGO_INITDB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+            - MONGO_INITDB_DATABASE=${DB_NAME}
+            - MONGO_INITDB_USER=${DB_USER}
+            - MONGO_INITDB_PWD=${DB_PASSWORD}
+        ports:
+            - 27017:27017
+    apiserver:
+        container_name: apiserverExpress
+        build: ./server
+        restart: always
+        environment:
+            - DB_CONNECTION=mongodb://${DB_USER}:${DB_PASSWORD}@mongodb:27017/development
+            - PORT=3030
+        links:
+            - mongodb
+    frontend:
+        container_name: frontendExpressReact
+        build: ./frontend
+        restart: always
+        ports:
+            - ${APP_PORT}:3000
+        links:
+            - apiserver
+        environment:
+            BACKEND_URL: http://apiserver:3030
+            NODE_ENV: ${NODE_ENV}
+            REACT_APP_LOCAL_API_URL: ''
+            PORT: 3000

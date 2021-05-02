@@ -1,0 +1,9 @@
+<li>
+    <label><%= question.label%></label>
+    <div>
+        <% switch(question.inputType) { case "textArea": %> <%-
+        include('questionTypes/textArea', {question: question})%> <% break; case
+        "radioButton": %> <%- include('questionTypes/radioButton', {question:
+        question})%> <% break; } %>
+    </div>
+</li>

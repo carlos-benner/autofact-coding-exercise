@@ -1,0 +1,8 @@
+Form <%= id %>
+<form action="/forms/<%= id %>" method="POST">
+    <ol>
+        <% questions.forEach((question) => {%> <%- include('question',
+        {question: question})%> <% })%>
+    </ol>
+    <button type="submit">Submit</button>
+</form>
