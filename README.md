@@ -4,7 +4,7 @@
 
 Para compilar y desplegar el projecto se debe tener instalado docker y docker-compose en la maquina.
 
-Use `docker-compose up --build' para desplegar la DB mongo, la API y la aplicacion front en 3 diferentes containers. La aplicacion quedara expuesta en el puerto $PORT declarado en el `.env` file.
+Use `docker-compose up` para desplegar la DB mongo, la API y la aplicacion front en 3 diferentes containers. La aplicacion quedara expuesta en el puerto $PORT declarado en el `.env` file.
 
 Ejemplo de las variables aceptadas:
 
